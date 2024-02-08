@@ -1,20 +1,3 @@
-/******************************************************************
-* @Name Dynamic destructive changes metadata builder
-* @Author Skience / Daniel Llewellyn (Kenji776@gmail.com)
-* @Date 5/31/2020
-* @Description This is an execute anonymous script meant to be run on the local machine within a sfdx project folder. It is a utility class to help you generate a destructiveChanges.xml file that can be deployed
-*              to your org. This is useful for cases when you don't know ahead of time exactly what items you want to delete but could deduce through apex logic. Such as in the case where you only want to keep a few specific 
-*              list views for an object but don't know which ones may have been created (as in the sample code that comes with this script). So you write some logic to query for the layouts, exclude the ones you want to keep
-*              feed the rest into the sObjectsListToStringList method, and then feed the results of that into the buildPackageString method. It will then print out the xml required for the file which you can save into
-*              a destructiveChanges.xml file. Or using the included script it can be automatically extracted and deployed (see build_and_deploy_changes.js) 
-*
-* @Limitations Currently this script is only useful for building destructive changes for objects that support querying through apex. In the future I hope to incorperate the Apex metadata wrapper from
-               https://github.com/financialforcedev/apex-mdapi to allow querying any metadata type for much more flexibility.
-********************************************************************/ 
-
-/**
-* @Description main entry point of script. Calling this will trigger the building of the destructiveChanges file.
-**/
 public static string buildPackage()
 {
 	system.debug('\n\n\n------ Building package for org ID: ' + UserInfo.getOrganizationId());
